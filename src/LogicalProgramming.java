@@ -9,6 +9,7 @@ public class LogicalProgramming {
     static final int COUPON_NUMBERS = 5;
     static final int DAYS_OF_WEEK = 8;
     static final int TEMPERATURE_CONVERSION = 9;
+    static final int MONTHLY_PAYMENT = 10;
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         System.out.println("Welcome to Logical Programming!");
@@ -20,7 +21,8 @@ public class LogicalProgramming {
                 4. Reverse a Number
                 5. Coupon Numbers
                 8. Days of Week
-                9. Temperature Conversion""");
+                9. Temperature Conversion
+                10. Monthly Payment""");
         System.out.print("Enter which function you want to call : " );
         int userOption = scnr.nextInt();
 
@@ -31,6 +33,7 @@ public class LogicalProgramming {
             case REVERSE_A_NUMBER -> lpObj.reverseANumber();
             case COUPON_NUMBERS -> lpObj.findCouponNumbers();
             case TEMPERATURE_CONVERSION -> lpObj.temperatureConversion();
+            case MONTHLY_PAYMENT -> lpObj.calculateMonthlyPayment();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
         }
     }
@@ -153,6 +156,22 @@ public class LogicalProgramming {
                 System.out.println("Temperature in Fahrenheit is : " + fah + "°F");
             }
         }
+    }
+
+    public void calculateMonthlyPayment () {
+        System.out.print("\nYou are in Get Monthly Function");
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("\nEnter Principle Amount : ");
+        int P = scnr.nextInt();
+        System.out.print("How many years do you want to pay a loan amount : ");
+        int Y = scnr.nextInt();
+        System.out.print("Enter what percentage : ");
+        double R = scnr.nextInt();
+        double r = R / (12 * 100);
+        double n = 12 * Y;
+
+        double payment = Math.ceil((P * r) / (1 - Math.pow(1 + r, -n)));
+        System.out.println("Monthly payment is : " + payment);
     }
 
     public void findDaysOfWeek () {
