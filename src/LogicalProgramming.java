@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class LogicalProgramming {
     static final int SUNDAY = 0;
     static final int MONDAY = 1;
@@ -7,14 +8,46 @@ public class LogicalProgramming {
     static final int THURSDAY = 4;
     static final int FRIDAY = 5;
     static final int SATURDAY = 6;
-    Scanner scnr = new Scanner(System.in);
+
+    static final int FIBONACCI_SERIES = 1;
+    static final int DAYS_OF_WEEK = 8;
     public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
         System.out.println("Welcome to Logical Programming!");
         LogicalProgramming lpObj = new LogicalProgramming();
-        lpObj.findDaysOfWeek();
+        System.out.println("""
+                1. Fibonacci Series
+                8. Days of Week""");
+        System.out.print("Enter which function you want to call : " );
+        int userOption = scnr.nextInt();
+
+        switch (userOption) {
+            case FIBONACCI_SERIES -> lpObj.fibonacciSeries();
+            case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
+        }
+
+    }
+
+    public void fibonacciSeries () {
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("\nEnter a number for Fibonacci series : ");
+        int userInput = scnr.nextInt();
+        int num1 = 0;
+        int num2 = 1;
+        int count = 2;
+        System.out.print("Fibonacci series upto " + userInput + " is : " + num1 + " " + num2);
+
+        while (count < userInput) {
+            int num3 = num1 + num2;
+            num1 = num2;
+            num2 = num3;
+            System.out.print(" " + num3);
+            count+=1;
+        }
     }
 
     public void findDaysOfWeek () {
+        Scanner scnr = new Scanner(System.in);
         System.out.print("Enter Month : ");
         int m = scnr.nextInt();
         System.out.print("Enter Date : ");
