@@ -1,20 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Date;
 public class LogicalProgramming {
-    static final int SUNDAY = 0;
-    static final int MONDAY = 1;
-    static final int TUESDAY = 2;
-    static final int WEDNESDAY = 3;
-    static final int THURSDAY = 4;
-    static final int FRIDAY = 5;
-    static final int SATURDAY = 6;
-
     static final int FIBONACCI_SERIES = 1;
     static final int PERFECT_NUMBER = 2;
     static final int PRIME_NUMBER = 3;
     static final int REVERSE_A_NUMBER = 4;
     static final int COUPON_NUMBERS = 5;
     static final int DAYS_OF_WEEK = 8;
+    static final int TEMPERATURE_CONVERSION = 9;
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         System.out.println("Welcome to Logical Programming!");
@@ -25,7 +19,8 @@ public class LogicalProgramming {
                 3. Prime Number
                 4. Reverse a Number
                 5. Coupon Numbers
-                8. Days of Week""");
+                8. Days of Week
+                9. Temperature Conversion""");
         System.out.print("Enter which function you want to call : " );
         int userOption = scnr.nextInt();
 
@@ -35,6 +30,7 @@ public class LogicalProgramming {
             case PRIME_NUMBER -> lpObj.findPrimeNumber();
             case REVERSE_A_NUMBER -> lpObj.reverseANumber();
             case COUPON_NUMBERS -> lpObj.findCouponNumbers();
+            case TEMPERATURE_CONVERSION -> lpObj.temperatureConversion();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
         }
     }
@@ -132,7 +128,41 @@ public class LogicalProgramming {
         System.out.println("Size of distinct coupons is : " + couponNumbersArray.size());
     }
 
+    public void temperatureConversion () {
+        final int CELSIUS = 1;
+        final int FAHRENHEIT = 2;
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("\nYou are in Temperature Conversion");
+        System.out.println("""
+                1. Fahrenheit to Celsius
+                2. Celsius to Fahrenheit""");
+        System.out.print("Enter your choice : ");
+        int userInput = scnr.nextInt();
+
+        switch (userInput) {
+            case CELSIUS -> {
+                System.out.print("Enter temperature in Fahrenheit (°F) : ");
+                float tempInFahrenheit = scnr.nextInt();
+                float cel = ((tempInFahrenheit - 32) * 5 / 9);
+                System.out.println("Temperature in Celsius is : " + cel + "°C");
+            }
+            case FAHRENHEIT -> {
+                System.out.print("Enter temperature in Celsius (°C) : ");
+                int tempInCelsius = scnr.nextInt();
+                int fah = ((tempInCelsius * 9 / 5) + 32);
+                System.out.println("Temperature in Fahrenheit is : " + fah + "°F");
+            }
+        }
+    }
+
     public void findDaysOfWeek () {
+        final int SUNDAY = 0;
+        final int MONDAY = 1;
+        final int TUESDAY = 2;
+        final int WEDNESDAY = 3;
+        final int THURSDAY = 4;
+        final int FRIDAY = 5;
+        final int SATURDAY = 6;
         Scanner scnr = new Scanner(System.in);
         System.out.print("Enter Month : ");
         int m = scnr.nextInt();
