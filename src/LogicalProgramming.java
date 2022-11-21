@@ -10,6 +10,7 @@ public class LogicalProgramming {
     static final int SATURDAY = 6;
 
     static final int FIBONACCI_SERIES = 1;
+    static final int PERFECT_NUMBER = 2;
     static final int DAYS_OF_WEEK = 8;
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
@@ -17,15 +18,16 @@ public class LogicalProgramming {
         LogicalProgramming lpObj = new LogicalProgramming();
         System.out.println("""
                 1. Fibonacci Series
+                2. Perfect Number
                 8. Days of Week""");
         System.out.print("Enter which function you want to call : " );
         int userOption = scnr.nextInt();
 
         switch (userOption) {
             case FIBONACCI_SERIES -> lpObj.fibonacciSeries();
+            case PERFECT_NUMBER -> lpObj.findPerfectNumber();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
         }
-
     }
 
     public void fibonacciSeries () {
@@ -44,6 +46,24 @@ public class LogicalProgramming {
             System.out.print(" " + num3);
             count+=1;
         }
+    }
+
+    public void findPerfectNumber () {
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("\nEnter number to find it is a Perfect Number or Not :");
+        int userInput = scnr.nextInt();
+        int add = 0;
+
+        for (int i = 1; i <= (userInput/2); i++) {
+            if (userInput % i == 0) {
+                System.out.print(i + " ");
+                add = add + i;
+            }
+        }
+        if (add == userInput) {
+            System.out.println("\n" + userInput + " Is a Perfect Number : ");
+        } else
+            System.out.println("\n" + userInput + " Is not a Perfect Number : ");
     }
 
     public void findDaysOfWeek () {
@@ -69,6 +89,5 @@ public class LogicalProgramming {
             case FRIDAY -> System.out.println("\nDay of the week is Friday");
             case SATURDAY -> System.out.println("\nDay of the week is Saturday");
         }
-
     }
 }
