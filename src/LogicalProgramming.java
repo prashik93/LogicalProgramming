@@ -12,6 +12,7 @@ public class LogicalProgramming {
     static final int FIBONACCI_SERIES = 1;
     static final int PERFECT_NUMBER = 2;
     static final int PRIME_NUMBER = 3;
+    static final int REVERSE_A_NUMBER = 4;
     static final int DAYS_OF_WEEK = 8;
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class LogicalProgramming {
                 1. Fibonacci Series
                 2. Perfect Number
                 3. Prime Number
+                4. Reverse a Number
                 8. Days of Week""");
         System.out.print("Enter which function you want to call : " );
         int userOption = scnr.nextInt();
@@ -29,6 +31,7 @@ public class LogicalProgramming {
             case FIBONACCI_SERIES -> lpObj.fibonacciSeries();
             case PERFECT_NUMBER -> lpObj.findPerfectNumber();
             case PRIME_NUMBER -> lpObj.findPrimeNumber();
+            case REVERSE_A_NUMBER -> lpObj.reverseANumber();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
         }
     }
@@ -86,6 +89,21 @@ public class LogicalProgramming {
             System.out.println("Prime Number");
         } else
             System.out.println("Not a prime number");
+    }
+
+    public void reverseANumber () {
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("\nEnter a number which you want to reverse it : ");
+        int userInput = scnr.nextInt();
+        int temp = userInput;
+        int rev = 0;
+
+        while (userInput > 0) {
+            int rem = (userInput % 10);
+            rev = (rev * 10) + rem;
+            userInput = userInput / 10;
+        }
+        System.out.println("Reverse of " + temp + " is => " + rev);
     }
 
     public void findDaysOfWeek () {
