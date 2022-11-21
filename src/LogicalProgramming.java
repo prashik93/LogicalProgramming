@@ -13,6 +13,7 @@ public class LogicalProgramming {
     static final int PERFECT_NUMBER = 2;
     static final int PRIME_NUMBER = 3;
     static final int REVERSE_A_NUMBER = 4;
+    static final int COUPON_NUMBERS = 5;
     static final int DAYS_OF_WEEK = 8;
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
@@ -23,6 +24,7 @@ public class LogicalProgramming {
                 2. Perfect Number
                 3. Prime Number
                 4. Reverse a Number
+                5. Coupon Numbers
                 8. Days of Week""");
         System.out.print("Enter which function you want to call : " );
         int userOption = scnr.nextInt();
@@ -32,6 +34,7 @@ public class LogicalProgramming {
             case PERFECT_NUMBER -> lpObj.findPerfectNumber();
             case PRIME_NUMBER -> lpObj.findPrimeNumber();
             case REVERSE_A_NUMBER -> lpObj.reverseANumber();
+            case COUPON_NUMBERS -> lpObj.findCouponNumbers();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
         }
     }
@@ -104,6 +107,29 @@ public class LogicalProgramming {
             userInput = userInput / 10;
         }
         System.out.println("Reverse of " + temp + " is => " + rev);
+    }
+
+    public void findCouponNumbers () {
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("\nEnter Distinct Coupon Number do you want to generate : ");
+        int userInput = scnr.nextInt();
+        ArrayList <Integer> couponNumbersArray = new ArrayList<>();
+        int count = 0;
+        int loopCount = 0;
+
+        while (count < userInput) {
+            int randomNumber = (int) (Math.floor(Math.random() * userInput));
+            if (couponNumbersArray.contains(randomNumber)) {
+                System.out.print("");
+            } else {
+                couponNumbersArray.add(randomNumber);
+                count += 1;
+            }
+            loopCount+=1;
+        }
+        System.out.println("Total random number needed to hava all distinct numbers is : " + loopCount);
+        System.out.println("Distinct Coupons is : " + couponNumbersArray);
+        System.out.println("Size of distinct coupons is : " + couponNumbersArray.size());
     }
 
     public void findDaysOfWeek () {
