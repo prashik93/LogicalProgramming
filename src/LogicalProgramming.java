@@ -1,12 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
+
 public class LogicalProgramming {
     static final int FIBONACCI_SERIES = 1;
     static final int PERFECT_NUMBER = 2;
     static final int PRIME_NUMBER = 3;
     static final int REVERSE_A_NUMBER = 4;
     static final int COUPON_NUMBERS = 5;
+    static final int FEWEST_NOTES = 7;
     static final int DAYS_OF_WEEK = 8;
     static final int TEMPERATURE_CONVERSION = 9;
     static final int MONTHLY_PAYMENT = 10;
@@ -20,6 +22,7 @@ public class LogicalProgramming {
                 3. Prime Number
                 4. Reverse a Number
                 5. Coupon Numbers
+                7. Fewest Notes
                 8. Days of Week
                 9. Temperature Conversion
                 10. Monthly Payment""");
@@ -32,9 +35,11 @@ public class LogicalProgramming {
             case PRIME_NUMBER -> lpObj.findPrimeNumber();
             case REVERSE_A_NUMBER -> lpObj.reverseANumber();
             case COUPON_NUMBERS -> lpObj.findCouponNumbers();
+            case FEWEST_NOTES -> lpObj.findFewestNotes();
+            case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
             case TEMPERATURE_CONVERSION -> lpObj.temperatureConversion();
             case MONTHLY_PAYMENT -> lpObj.calculateMonthlyPayment();
-            case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
+
         }
     }
 
@@ -131,6 +136,63 @@ public class LogicalProgramming {
         System.out.println("Size of distinct coupons is : " + couponNumbersArray.size());
     }
 
+    public void findFewestNotes () {
+        System.out.println("\nYou are in Find Fewest Notes");
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("Enter Amount to get change of it : ");
+        int userInput = scnr.nextInt();
+        int[] notesArray = {1, 2, 5, 10, 50, 100, 500, 1000};
+        ArrayList<Integer> changeNotesArray = new ArrayList<>();
+
+        for (int i = (notesArray.length - 1); i >= 0 ; i--) {
+            int quotient;
+            int count = 0;
+            if (userInput >= notesArray[i]) {
+                System.out.println("User Input : " + userInput);
+                quotient = userInput / notesArray[i];
+                userInput  = userInput % notesArray[i];
+                while (count != quotient) {
+                    changeNotesArray.add(notesArray[i]);
+                    count++;
+                }
+            }
+        }
+        System.out.println("Minimum number of notes to be give : " + changeNotesArray.size());
+        System.out.println("Rs Notes to be give : " + changeNotesArray);
+    }
+
+    public void findDaysOfWeek () {
+        final int SUNDAY = 0;
+        final int MONDAY = 1;
+        final int TUESDAY = 2;
+        final int WEDNESDAY = 3;
+        final int THURSDAY = 4;
+        final int FRIDAY = 5;
+        final int SATURDAY = 6;
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("Enter Month : ");
+        int m = scnr.nextInt();
+        System.out.print("Enter Date : ");
+        int d = scnr.nextInt();
+        System.out.print("Enter Year : ");
+        int y = scnr.nextInt();
+
+        int Y = y - (14 -m) / 12;
+        int X = Y + (Y / 4) - (Y / 100) + (Y / 400);
+        int M = m + 12 * ((14 - m) / 12) - 2;
+        int D = (d + X + ((31 * M) / 12)) % 7;
+
+        switch (D) {
+            case SUNDAY -> System.out.println("\nDay of the week is Sunday");
+            case MONDAY -> System.out.println("\nDay of the week is Monday");
+            case TUESDAY -> System.out.println("\nDay of the week is Tuesday");
+            case WEDNESDAY -> System.out.println("\nDay of the week is Wednesday");
+            case THURSDAY -> System.out.println("\nDay of the week is Thursday");
+            case FRIDAY -> System.out.println("\nDay of the week is Friday");
+            case SATURDAY -> System.out.println("\nDay of the week is Saturday");
+        }
+    }
+
     public void temperatureConversion () {
         final int CELSIUS = 1;
         final int FAHRENHEIT = 2;
@@ -172,37 +234,5 @@ public class LogicalProgramming {
 
         double payment = Math.ceil((P * r) / (1 - Math.pow(1 + r, -n)));
         System.out.println("Monthly payment is : " + payment);
-    }
-
-    public void findDaysOfWeek () {
-        final int SUNDAY = 0;
-        final int MONDAY = 1;
-        final int TUESDAY = 2;
-        final int WEDNESDAY = 3;
-        final int THURSDAY = 4;
-        final int FRIDAY = 5;
-        final int SATURDAY = 6;
-        Scanner scnr = new Scanner(System.in);
-        System.out.print("Enter Month : ");
-        int m = scnr.nextInt();
-        System.out.print("Enter Date : ");
-        int d = scnr.nextInt();
-        System.out.print("Enter Year : ");
-        int y = scnr.nextInt();
-
-        int Y = y - (14 -m) / 12;
-        int X = Y + (Y / 4) - (Y / 100) + (Y / 400);
-        int M = m + 12 * ((14 - m) / 12) - 2;
-        int D = (d + X + ((31 * M) / 12)) % 7;
-
-        switch (D) {
-            case SUNDAY -> System.out.println("\nDay of the week is Sunday");
-            case MONDAY -> System.out.println("\nDay of the week is Monday");
-            case TUESDAY -> System.out.println("\nDay of the week is Tuesday");
-            case WEDNESDAY -> System.out.println("\nDay of the week is Wednesday");
-            case THURSDAY -> System.out.println("\nDay of the week is Thursday");
-            case FRIDAY -> System.out.println("\nDay of the week is Friday");
-            case SATURDAY -> System.out.println("\nDay of the week is Saturday");
-        }
     }
 }
