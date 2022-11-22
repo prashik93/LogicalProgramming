@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.time.LocalTime;
+import java.time.Duration;
 
 public class LogicalProgramming {
     static final int FIBONACCI_SERIES = 1;
@@ -8,6 +9,7 @@ public class LogicalProgramming {
     static final int PRIME_NUMBER = 3;
     static final int REVERSE_A_NUMBER = 4;
     static final int COUPON_NUMBERS = 5;
+    static final int SIMULATE_STOPWATCH = 6;
     static final int FEWEST_NOTES = 7;
     static final int DAYS_OF_WEEK = 8;
     static final int TEMPERATURE_CONVERSION = 9;
@@ -22,6 +24,7 @@ public class LogicalProgramming {
                 3. Prime Number
                 4. Reverse a Number
                 5. Coupon Numbers
+                6. Simulate Stopwatch
                 7. Fewest Notes
                 8. Days of Week
                 9. Temperature Conversion
@@ -35,6 +38,7 @@ public class LogicalProgramming {
             case PRIME_NUMBER -> lpObj.findPrimeNumber();
             case REVERSE_A_NUMBER -> lpObj.reverseANumber();
             case COUPON_NUMBERS -> lpObj.findCouponNumbers();
+            case SIMULATE_STOPWATCH -> lpObj.simulateStopwatch();
             case FEWEST_NOTES -> lpObj.findFewestNotes();
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
             case TEMPERATURE_CONVERSION -> lpObj.temperatureConversion();
@@ -131,6 +135,31 @@ public class LogicalProgramming {
         System.out.println("Total random number needed to hava all distinct numbers is : " + loopCount);
         System.out.println("Distinct Coupons is : " + couponNumbersArray);
         System.out.println("Size of distinct coupons is : " + couponNumbersArray.size());
+    }
+
+    public void simulateStopwatch () {
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("\nYou are in Simulate Stopwatch function\n");
+        System.out.print("Enter 1 to Start : ");
+        int userStart = scnr.nextInt();
+         LocalTime startTime = null;
+         LocalTime stopTime = null;
+        if (userStart == 1) {
+            startTime = java.time.LocalTime.now();
+            System.out.println("Start Time : " + startTime);
+        }
+        System.out.print("Enter 2 to Stop : ");
+        int userStop = scnr.nextInt();
+        if (userStop == 2) {
+            stopTime = java.time.LocalTime.now();
+            System.out.println("Stop Time : " + stopTime);
+        }
+        assert startTime != null;
+        Duration timesDiff = Duration.between(startTime, stopTime);
+        int seconds = timesDiff.toSecondsPart();
+        int millis = timesDiff.toMillisPart();
+        int nanos = timesDiff.toNanosPart();
+        System.out.println("Stopwatch time is : " + seconds + ":Second " + millis + ":Millisecond " + nanos + ":Nanosecond");
     }
 
     public void findFewestNotes () {
