@@ -39,7 +39,6 @@ public class LogicalProgramming {
             case DAYS_OF_WEEK -> lpObj.findDaysOfWeek();
             case TEMPERATURE_CONVERSION -> lpObj.temperatureConversion();
             case MONTHLY_PAYMENT -> lpObj.calculateMonthlyPayment();
-
         }
     }
 
@@ -122,10 +121,8 @@ public class LogicalProgramming {
         int loopCount = 0;
 
         while (count < userInput) {
-            int randomNumber = (int) (Math.floor(Math.random() * userInput));
-            if (couponNumbersArray.contains(randomNumber)) {
-                System.out.print("");
-            } else {
+            int randomNumber = (int) (Math.floor(Math.random() * (9999 - 100) + 1) + 10);
+            if (!couponNumbersArray.contains(randomNumber)) {
                 couponNumbersArray.add(randomNumber);
                 count += 1;
             }
@@ -148,7 +145,6 @@ public class LogicalProgramming {
             int quotient;
             int count = 0;
             if (userInput >= notesArray[i]) {
-                System.out.println("User Input : " + userInput);
                 quotient = userInput / notesArray[i];
                 userInput  = userInput % notesArray[i];
                 while (count != quotient) {
